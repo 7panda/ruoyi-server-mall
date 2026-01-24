@@ -5,6 +5,7 @@
       <div class="first"><img alt="" :src="avatar" style="width: 50px; height: 50px; float:left; margin-right:10px;border-radius:50%" />
         <p style="font-size:16px;margin-bottom:8px">{{name}}，{{hello}}</p>
         <p style="font-size:12px;color:rgb(185, 181, 189)">今天是：{{nowTime}}</p>
+        <!-- <p style="font-size:12px;color:rgb(185, 181, 189)">角色：{{ roles && roles.length ? roles.join('，') : '无角色' }}</p> -->
       </div>
       <!-- <div class="first">
         <ul>
@@ -31,6 +32,27 @@
         </ul>
       </div> -->
     </el-card>
+    <el-row class="pl20 pr20" :gutter="20">
+      <template v-if="featureTiles.length">
+        <el-col :span="12" v-for="tile in featureTiles" :key="tile.title">
+          <router-link :to="tile.route">
+            <el-card shadow="hover" style="margin: 10px 0;">
+              <div style="font-weight: 600; font-size: 16px;">
+                <i :class="tile.icon" style="margin-right:6px"></i>{{ tile.title }}
+              </div>
+              <div style="color: #7f8c8d; margin-top: 6px;">{{ tile.desc }}</div>
+            </el-card>
+          </router-link>
+        </el-col>
+      </template>
+      <template v-else>
+        <el-col :span="24">
+          <el-card shadow="hover" style="margin: 10px 0;">
+            <div style="font-weight: 600; font-size: 16px;">当前角色暂无可用功能</div>
+          </el-card>
+        </el-col>
+      </template>
+    </el-row>
     <!-- <el-row class="pl20 pr20" :gutter="10">
       <el-col :span="3">
         <el-image
@@ -232,11 +254,30 @@ export default {
         todayHasDeliveredCount: 0,
         todayOrderCount: 0,
         todayTransactionAmount: 0
-      }
+      },
+      featureDefs: [
+        { title: '订单管理', desc: '查看与处理订单', route: { path: '/order/order' }, requiredPerms: ['oms:order:query'], icon: 'el-icon-s-order' },
+        { title: '售后管理', desc: '查看与处理售后', route: { path: '/order/aftersale' }, requiredPerms: ['oms:aftersale:query'], icon: 'el-icon-s-help' },
+        { title: '商品管理', desc: '维护商品与库存', route: { path: '/pms/product' }, requiredPerms: ['pms:product:list'], icon: 'el-icon-goods' }
+      ]
     }
   },
   computed: {
-    ...mapGetters(['avatar', 'name'])
+    ...mapGetters(['avatar', 'name', 'roles', 'permissions']),
+    availableFeatures() {
+      const roles = this.roles || []
+      const permissions = this.permissions || []
+      const isAdmin = roles.includes('admin')
+      const hasAllPerms = permissions.includes('*:*:*')
+      if (isAdmin || hasAllPerms) {
+        return this.featureDefs
+      }
+      const permSet = new Set(permissions)
+      return this.featureDefs.filter(def => (def.requiredPerms || []).every(p => permSet.has(p)))
+    },
+    featureTiles() {
+      return this.availableFeatures.slice(0, 2)
+    }
   },
   created() {
     this.showTimes()
