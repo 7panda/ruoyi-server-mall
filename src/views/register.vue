@@ -60,9 +60,9 @@
       </el-form-item>
     </el-form>
     <!--  底部  -->
-    <div class="el-register-footer">
+    <!-- <div class="el-register-footer">
       <span>Copyright © 2017-2023 ichengle.top 技术支持：关注“程序员诚哥”微信公众号，回复：支持</span>
-    </div>
+    </div> -->
   </div>
 </template>
 
