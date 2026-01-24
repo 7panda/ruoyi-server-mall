@@ -1,12 +1,12 @@
 <template>
   <div class="home-wrapper">
     <el-card style="margin: 20px 20px; font-size: 14px">
-      <div slot="header"><span>讲解视频：</span><a href="https://www.bilibili.com/video/BV16N4y1d7MM/" target="_blank">https://www.bilibili.com/video/BV16N4y1d7MM/</a></div>
+      <!-- <div slot="header"><span>讲解视频：</span><a href="https://www.bilibili.com/video/BV16N4y1d7MM/" target="_blank">https://www.bilibili.com/video/BV16N4y1d7MM/</a></div> -->
       <div class="first"><img alt="" :src="avatar" style="width: 50px; height: 50px; float:left; margin-right:10px;border-radius:50%" />
         <p style="font-size:16px;margin-bottom:8px">{{name}}，{{hello}}</p>
         <p style="font-size:12px;color:rgb(185, 181, 189)">今天是：{{nowTime}}</p>
       </div>
-      <div class="first">
+      <!-- <div class="first">
         <ul>
           <li class="li" style="width: 33%">会员数
           </li>
@@ -29,9 +29,9 @@
             10
           </li>
         </ul>
-      </div>
+      </div> -->
     </el-card>
-    <el-row class="pl20 pr20" :gutter="10">
+    <!-- <el-row class="pl20 pr20" :gutter="10">
       <el-col :span="3">
         <el-image
           style="height: 150px"
@@ -97,8 +97,8 @@
           </div>
         </el-card>
       </el-col>
-    </el-row>
-    <el-row class="pl20 pr20" :gutter="10">
+    </el-row> -->
+    <!-- <el-row class="pl20 pr20" :gutter="10">
       <el-col :span="16">
         <order-line-chart></order-line-chart>
         <div class="card transform">
@@ -142,7 +142,7 @@
           </el-timeline>
         </el-card>
       </el-col>
-    </el-row>
+    </el-row> -->
   </div>
 </template>
 <script>
