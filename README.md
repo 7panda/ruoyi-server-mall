@@ -15,9 +15,9 @@ npm install --registry=https://registry.npmmirror.com
 
 # 启动服务
 npm run dev
-# 兼容旧版本node
-$env:NODE_OPTIONS="--openssl-legacy-provider"
+# 兼容旧版本node$env:NODE_OPTIONS="--openssl-legacy-provider"
 npm run dev
+
 ```
 
 ## 发布
