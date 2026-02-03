@@ -15,9 +15,16 @@ npm install --registry=https://registry.npmmirror.com
 
 # 启动服务
 npm run dev
-# 兼容旧版本node$env:NODE_OPTIONS="--openssl-legacy-provider"
+# 兼容旧版本
+node$env:NODE_OPTIONS="--openssl-legacy-provider"
 npm run dev
 
+
+# 在 PowerShell 中使用
+$env:NODE_OPTIONS="--openssl-legacy-provider"; npm run dev
+
+# 或在 cmd 中使用
+set NODE_OPTIONS="--openssl-legacy-provider" && npm run dev
 ```
 
 ## 发布
