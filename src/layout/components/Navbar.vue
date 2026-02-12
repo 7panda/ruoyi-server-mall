@@ -104,7 +104,7 @@ export default {
         type: 'warning'
       }).then(() => {
         this.$store.dispatch('LogOut').then(() => {
-          location.href = '/index';
+          location.href = '/server-mall';
         })
       }).catch(() => {});
     }
