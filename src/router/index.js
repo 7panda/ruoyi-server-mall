@@ -214,13 +214,13 @@ Router.prototype.push = function push(location) {
 
 export default new Router({
   mode: 'history', // 去掉url中的#
-  
+
   // ========================================================
   // 【关键修改】添加 base 配置，使其能正确识别子目录路径
   // 这样 router 在跳转时，就会自动带上 /server-mall/ 前缀
   // ========================================================
   base: process.env.BASE_URL,
-  
+
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })

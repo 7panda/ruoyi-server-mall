@@ -35,6 +35,10 @@ npm run build:stage
 
 # 构建生产环境
 npm run build:prod
+
+
+$env:NODE_OPTIONS = "--openssl-legacy-provider"
+npm run build:prod
 ```
 ## 项目地址
 |           | gitee                                      | github                                       |
